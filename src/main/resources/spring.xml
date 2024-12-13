@@ -9,7 +9,7 @@
         if we add singelton then, how many times u called the getbean("bobby") with different obj,  it refered to only one reference 
         if we add prototype then, how many times u called the getbean("bobby") with different obj,  that many times it creates a different reference
  -->
-        <bean id="bobby" class="com.maven.Bobby" autowire="byName">
+        <bean id="bobby" class="com.maven.Bobby" autowire="byType">
         <!-- if u want to set any property we need to use property tag-->
 
         <!-- value is for primitive values-->
@@ -30,8 +30,11 @@
          <!-- here ref="lap1" is id of bean i.e, bean id="lap1"-->
          <!-- <property name="com" ref="lap1"></property> -->
          <property name="age" value="21"></property>
+         <property name="com" >
+              <bean id="com1" class="com.maven.Laptop" primary="true" >  </bean>
+         </property>
         </bean>
 
-        <bean id="com1" class="com.maven.Laptop" >  </bean>
-         <bean id="com" class="com.maven.Desktop" >  </bean>
+       
+         <bean id="com2" class="com.maven.Desktop" lazy-init="true" >  </bean>
 </beans>

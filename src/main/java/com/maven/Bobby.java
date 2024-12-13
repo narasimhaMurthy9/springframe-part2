@@ -1,13 +1,30 @@
 package com.maven;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 //import java.beans.ConstructorProperties;
-
+ @Component
 public class Bobby {
-
+ 
+   //add value by using Value annotation
+   @Value("21")
    private int age;
    private Laptop lap;
+   // by using autowired we are saying, hey spring go to your container then u will get a com object
+   @Autowired
+   // here bean name we are passing in Qualifier is as same as class name but small letters
+   //Qualifier is used for get rid from confusion by passing name
+   @Qualifier("laptop")
    private Computer com;
-        
+
+   // constructor
+        public Bobby(){
+            System.out.println("object created....from Bobby");
+        }
+                
         public Laptop getLap() {
             System.out.println("getting lap called");
             return lap;
@@ -23,7 +40,7 @@ public class Bobby {
         }
 
         public void setAge(int age) {
-            System.out.println("setter called");
+            System.out.println(age + "age setter called");
             this.age = age;
         }
 
@@ -33,7 +50,7 @@ public class Bobby {
         }
 
         public void setCom(Computer com) {
-            System.out.println("setting com called");
+            System.out.println("com setting com called");
             this.com = com;
         }
     
@@ -43,10 +60,7 @@ public class Bobby {
         }
          
 
-// constructor
-   public Bobby(){
-    System.out.println("object created....from constructor");
-   }
+
 
 // if we are using constructor-are with name in spring.xml we need to use ConstructorProperties
 // @ConstructorProperties({"age","lap"})
